@@ -1,5 +1,6 @@
 /*
  * Sifteo SDK Example.
+ *I changed the file
  */
 
 #include <sifteo.h>
