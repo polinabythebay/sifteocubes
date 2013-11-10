@@ -72,12 +72,15 @@ void main()
     struct MenuEvent e2;
 
 
-    uint8_t item;
-    uint8_t item1;
+    uint8_t item; //item associated with first cube
+    uint8_t item1; //item associated with second cube 
 
     while (1) {
-        while ((m0.pollEvent(&e))&&(m1.pollEvent(&e1))) {
+        while ((m0.pollEvent(&e))&&(m1.pollEvent(&e1))&&(m2.pollEvent(&e2))) {
 
+//////////////////////////////////////////////////////////////////////////////////////////////////
+                //CUBE 0 EVENTS
+ //////////////////////////////////////////////////////////////////////////////////////////////////           
             
             switch (e.type) {
 
@@ -182,7 +185,11 @@ void main()
                     ASSERT(false);
                     break;
             }
-            
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+                //CUBE 1 EVENTS
+ //////////////////////////////////////////////////////////////////////////////////////////////////   
+
             switch (e1.type) {
 
                 case MENU_ITEM_PRESS:
@@ -287,7 +294,119 @@ void main()
                     ASSERT(false);
                     break;
             }
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+                //CUBE 2 EVENTS
+ //////////////////////////////////////////////////////////////////////////////////////////////////   
             
+            switch (e2.type) {
+
+                case MENU_ITEM_PRESS:
+          
+                    
+                    if (e2.item ==0){
+                        //if this is the first time you've clicked the first item
+                        if (item_0_status==0){
+                        m2.replaceIcon(e2.item, selectItems[0].icon, selectItems[0].label);
+                        m2.anchor(e2.item);
+                        item_0_status=1;
+                        //second time you've clicked first item
+                        } else if (item_0_status==1) {
+                            m2.replaceIcon(e2.item, completeItems[0].icon, completeItems[0].label);
+                            item_0_status=2;
+                            m2.anchor(e2.item);
+                        //third time you've clicked first item
+                        } else if (item_0_status==2){
+                            m2.replaceIcon(e2.item, clickItems[0].icon, clickItems[0].label);
+                            item_0_status=0; //loop back to the first state
+                            m2.anchor(e2.item); 
+                        }
+                    }
+
+                     if (e2.item ==1){
+                        //if this is the first time you've clicked the 2nd item
+                        if (item_1_status==0){
+                            m2.replaceIcon(e2.item, selectItems[1].icon, selectItems[1].label);
+                            m2.anchor(e2.item);
+                            item_1_status=1;
+                        //second time you've clicked the 2nd item
+                        } else if (item_1_status==1) {
+                            m2.replaceIcon(e2.item, completeItems[1].icon, completeItems[1].label);
+                            m2.anchor(e2.item);
+                            item_1_status=2;
+                        //third time you've clicked the 2nd item
+                        } else if (item_1_status==2){
+                            m2.replaceIcon(e2.item, clickItems[1].icon, clickItems[1].label);
+                            m2.anchor(e2.item);
+                            item_1_status=0; //it'll loop back to the first state
+                        }
+                    }
+
+                     if (e2.item ==2){
+                        //if this is the first time you've clicked the 3rd item
+                        if (item_2_status==0){
+                            m2.replaceIcon(e2.item, selectItems[2].icon, selectItems[2].label);
+                            m2.anchor(e2.item);
+                            item_2_status=1;
+                            //2nd time you've clicked the 3rd item
+                        } else if (item_2_status==1) {
+                            m2.replaceIcon(e2.item, completeItems[2].icon, completeItems[2].label);
+                            m2.anchor(e2.item);
+                            item_2_status=2;
+                            //third time you've clicked the 3rd item
+                        } else if (item_2_status==2){
+                            m2.replaceIcon(e2.item, clickItems[2].icon, clickItems[2].label);
+                            m2.anchor(e2.item);
+                            item_2_status=0; //it'll loop back to the first state 
+                        }
+                    }
+
+                    assert_indicator =3;
+
+
+                    break;
+
+                case MENU_EXIT:
+                    // this is not possible when pollEvent is used as the condition to the while loop.
+                    // NOTE: this event should never have its default handler skipped.
+                    ASSERT(false);
+                    break;
+
+                case MENU_NEIGHBOR_ADD:
+                    LOG("E2: found cube %d on side %d of menu (neighbor's %d side)\n",
+                         e2.neighbor.neighbor, e2.neighbor.masterSide, e2.neighbor.neighborSide);
+                    break;
+
+                case MENU_NEIGHBOR_REMOVE:
+                    LOG("E2: lost cube %d on side %d of menu (neighbor's %d side)\n",
+                         e2.neighbor.neighbor, e2.neighbor.masterSide, e2.neighbor.neighborSide);
+                    break;
+
+                case MENU_ITEM_ARRIVE:
+                    LOG("E2: arriving at menu item %d\n", e2.item);
+                    item = e2.item;
+                   // item1 = a.item;
+
+                    break;
+
+                case MENU_ITEM_DEPART:
+                    LOG("E2: departing from menu item %d, scrolling %s\n", item, e2.direction > 0 ? "forward" : "backward");
+                    break;
+
+                case MENU_PREPAINT:
+                    // do your implementation-specific drawing here
+                    // NOTE: this event should never have its default handler skipped.
+                    break;
+
+                case MENU_UNEVENTFUL:
+                    // this should never happen. if it does, it can/should be ignored.
+                    ASSERT(false);
+                    break;
+            } 
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+                //ALL CUBE EVENTS
+ ////////////////////////////////////////////////////////////////////////////////////////////////// 
 
             m0.performDefault();
             m1.performDefault();
@@ -296,11 +415,15 @@ void main()
         }
 
         // Handle the exit event (so we can re-enter the same Menu)
+        //Need this for every distinct cube we have in order to handle click events 
         if (assert_indicator==1){
             ASSERT(e.type == MENU_EXIT);
         } 
         if (assert_indicator==2){
             ASSERT(e1.type == MENU_EXIT);
+        }
+        if (assert_indicator==3){
+            ASSERT(e2.type == MENU_EXIT);
         }
         
         
@@ -312,5 +435,6 @@ void main()
 
         LOG("E: Selected Game: %d\n", e.item);
         LOG("E1: Selected Game: %d\n", e1.item);
+        LOG("E1: Selected Game: %d\n", e2.item);
     }
 }
