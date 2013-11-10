@@ -10,11 +10,13 @@ BetterflowAssets = group{quality=10}
 BgTile = image{ "bg.png", pinned=1 }
 StripeTile = image{ "stripes.png", pinned=1 }
 
+PurpleTile = image{ "purplebackground.png", pinned=1}
+
 IconSandwich = image{ "IconSandwich.png" }
 IconChroma = image{ "IconChroma.png" }
 IconPeano = image{ "IconPeano.png" }
 IconBuddy = image{ "IconBuddy.png"}
-helloworld = image{"helloworld.png"}
+helloworld = image{"helloworld.png", pinned=1}
 
 task1 = image{"task1.png"}
 task2 = image{"task2.png"}
