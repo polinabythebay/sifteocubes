@@ -3,6 +3,10 @@ sifteocubes
 
 Sifteo cubes are an interactive gaming platform developed by Sifteo, Inc. [https://www.sifteo.com/]
 
+For getting started with the Sifteo SDK and Basic Animation see:
+[http://tech.sifteo.com/2013/01/08/getting-oriented-with-the-sifteo-sdk/]
+[http://tech.sifteo.com/2013/01/22/getting-started-basic-animation/]
+
 
 License
 ===========
