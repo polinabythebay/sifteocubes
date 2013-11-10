@@ -11,9 +11,15 @@ using namespace Sifteo;
 // Static Globals
 static const unsigned gNumCubes = 3;
 static VideoBuffer gVideo[gNumCubes];
-static struct MenuItem gItems[] = { {&helloworld, NULL},{NULL, NULL} };
+static struct MenuItem gItems[] = { {&task1, NULL}, {&task2, NULL}, {&task3, NULL},{NULL, NULL} };
 //{&IconChroma, &LabelChroma}, {&IconSandwich, &LabelSandwich}, {&IconPeano, &LabelPeano}, {&IconBuddy, &LabelBuddy}, {&IconChroma, NULL}, 
-static struct MenuItem clickItems[] = { {&IconChroma, &LabelChroma} };
+
+static struct MenuItem clickItems[] = { {&task1, NULL}, {&task2, NULL} , {&task3, NULL} };
+static struct MenuItem selectItems[] = { {&task1_selected, NULL}, {&task2_selected, NULL}, {&task3_selected, NULL} };
+static struct MenuItem completeItems[] = { {&task1_complete, NULL}, {&task2_complete, NULL}, {&task3_complete, NULL}};
+
+
+
 static struct MenuAssets gAssets = {&BgTile, &Footer, &LabelEmpty, {&Tip0, &Tip1, &Tip2, NULL}};
 //{&helloworld, NULL}
 static AssetSlot MainSlot = AssetSlot::allocate()
@@ -40,8 +46,13 @@ void main()
 {
     begin();
 
-    Menu m(gVideo[0], &gAssets, gItems);
+    Menu m(gVideo[1], &gAssets, gItems);
     //m.anchor(2);
+
+
+    int item_0_status= 0;
+    int item_1_status= 0;
+    int item_2_status=0;
 
 
     struct MenuEvent e;
@@ -53,22 +64,67 @@ void main()
             switch (e.type) {
 
                 case MENU_ITEM_PRESS:
-                    // Game Buddy is not clickable, so don't do anything on press
-                    /*if (e.item >= 1) {
-                        // Prevent the default action
-                        continue;
-                    } else {
+          
+
+                    if (e.item ==0){
+                        //if this is the first time you've clicked the first item
+                        if (item_0_status==0){
+                        m.replaceIcon(e.item, selectItems[0].icon, selectItems[0].label);
                         m.anchor(e.item);
+                        item_0_status=1;
+                        //second time you've clicked first item
+                        } else if (item_0_status==1) {
+                            m.replaceIcon(e.item, completeItems[0].icon, completeItems[0].label);
+                            item_0_status=2;
+                            m.anchor(e.item);
+                        //third time you've clicked first item
+                        } else if (item_0_status==2){
+                            m.replaceIcon(e.item, clickItems[0].icon, clickItems[0].label);
+                            item_0_status=0; //loop back to the first state
+                            m.anchor(e.item); 
+                        }
                     }
-                    if (e.item == 0) {
-                        //static unsigned randomIcon = 0;
-                        //randomIcon = (randomIcon + 1) % e.item;
-                        //m.replaceIcon(e.item, gItems[randomIcon].icon, gItems[randomIcon].label);
-                    }*/
-                    //if ()
-                    m.replaceIcon(e.item, clickItems[0].icon, clickItems[0].label);
-           
-                    m.replaceIcon(e.item, gItems[0].icon, gItems[0].label);
+
+                     if (e.item ==1){
+                        //if this is the first time you've clicked the 2nd item
+                        if (item_1_status==0){
+                            m.replaceIcon(e.item, selectItems[1].icon, selectItems[1].label);
+                            m.anchor(e.item);
+                            item_1_status=1;
+                        //second time you've clicked the 2nd item
+                        } else if (item_1_status==1) {
+                            m.replaceIcon(e.item, completeItems[1].icon, completeItems[1].label);
+                            m.anchor(e.item);
+                            item_1_status=2;
+                        //third time you've clicked the 2nd item
+                        } else if (item_1_status==2){
+                            m.replaceIcon(e.item, clickItems[1].icon, clickItems[1].label);
+                            m.anchor(e.item);
+                            item_1_status=0; //it'll loop back to the first state
+                        }
+                    }
+
+                     if (e.item ==2){
+                        //if this is the first time you've clicked the 3rd item
+                        if (item_2_status==0){
+                            m.replaceIcon(e.item, selectItems[2].icon, selectItems[2].label);
+                            m.anchor(e.item);
+                            item_2_status=1;
+                            //2nd time you've clicked the 3rd item
+                        } else if (item_2_status==1) {
+                            m.replaceIcon(e.item, completeItems[2].icon, completeItems[2].label);
+                            m.anchor(e.item);
+                            item_2_status=2;
+                            //third time you've clicked the 3rd item
+                        } else if (item_2_status==2){
+                            m.replaceIcon(e.item, clickItems[2].icon, clickItems[2].label);
+                            m.anchor(e.item);
+                            item_2_status=0; //it'll loop back to the first state 
+                        }
+                    }
+
+                   
+
                     break;
 
                 case MENU_EXIT:
