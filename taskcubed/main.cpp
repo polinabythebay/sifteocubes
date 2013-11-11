@@ -1,6 +1,9 @@
 /*
- * Sifteo SDK Example.
- *I changed the file
+ * TaskCubed
+ * authors: psoshnin, scusack, dsuggs
+ * date created: 10/15/2013
+ * date modified: 11/10/2013
+ * purpose: manipulate and share properties of tasks between cubes 
  */
 
 #include <sifteo.h>
@@ -93,7 +96,7 @@ void main()
 
 
     uint8_t item; //item associated with first cube
-    uint8_t item1; //item associated with second cube 
+    //uint8_t item1; //item associated with second cube 
 
     while (1) {
         while ((m0.pollEvent(&e))&&(m1.pollEvent(&e1))&&(m2.pollEvent(&e2))) {
@@ -453,8 +456,9 @@ void main()
         m2.performDefault();
         
 
+
         LOG("E: Selected Game: %d\n", e.item);
         LOG("E1: Selected Game: %d\n", e1.item);
-        LOG("E1: Selected Game: %d\n", e2.item);
+        LOG("E2: Selected Game: %d\n", e2.item);
     }
 }
