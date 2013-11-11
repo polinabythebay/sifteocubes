@@ -9,7 +9,6 @@
 #include <sifteo.h>
 #include <sifteo/menu.h>
 #include "assets.gen.h"
-#include "loader.h"
 using namespace Sifteo;
 
 // Static Globals
@@ -48,6 +47,10 @@ static void begin() {
 
 
 
+
+
+
+
 void main()
 {
     begin();
@@ -69,24 +72,25 @@ void main()
 
 
     //task status for cube 1
-    int item_0_status = 0;
-    int item_1_status = 0;
-    int item_2_status = 0;
+    int item_0_status= 0;
+    int item_1_status= 0;
+    int item_2_status=0;
 
      //task status for cube 2
-    int item1_0_status = 0;
-    int item1_1_status = 0;
-    int item1_2_status = 0;
+    int item1_0_status= 0;
+    int item1_1_status= 0;
+    int item1_2_status=0;
 
      //task status for cube 3
-    int item2_0_status = 0;
-    int item2_1_status = 0;
-    int item2_2_status = 0;
+    int item2_0_status= 0;
+    int item2_1_status= 0;
+    int item2_2_status=0;
 
     //indicates MenuEvent needs to ASSERT(e.type == MENU_EXIT);
-    int assert_indicator = 0;
+    int assert_indicator=0;
 
     //NOTE: need to use menudemo.elf, it's the only one that changes--> need to figure out how to fix that
+
 
     struct MenuEvent e;
     struct MenuEvent e1;
