@@ -28,5 +28,6 @@ purple_label = image{"purple.png"}
 orange_label = image{"orange.png"}
 green_label = image{"green.png"}
 
+dummy_icon = image{"dummy.png"}
 Footer = image{ "Footer.png" }
 LabelEmpty = image{ "LabelEmpty.png" }
