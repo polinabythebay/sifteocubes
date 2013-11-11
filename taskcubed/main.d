@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 main.o: main.cpp /Users/Goddess/Documents/CS/sifteocubes/include/sifteo.h \
   /Users/Goddess/Documents/CS/sifteocubes/include/sifteo/abi.h \
   /Users/Goddess/Documents/CS/sifteocubes/include/sifteo/abi/syscall.h \
@@ -44,6 +45,8 @@ main.o: main.cpp /Users/Goddess/Documents/CS/sifteocubes/include/sifteo.h \
   /Users/Goddess/Documents/CS/sifteocubes/include/sifteo/menu/events.h \
   assets.gen.h loader.h
 =======
+=======
+>>>>>>> 1de11d990e71ec5787a47be274f99c3bc337d7c1
 main.o: main.cpp /Users/danika/sifteo/include/sifteo.h \
   /Users/danika/sifteo/include/sifteo/abi.h \
   /Users/danika/sifteo/include/sifteo/abi/syscall.h \
@@ -87,6 +90,9 @@ main.o: main.cpp /Users/danika/sifteo/include/sifteo.h \
   /Users/danika/sifteo/include/sifteo/menu/public.h \
   /Users/danika/sifteo/include/sifteo/menu/states.h \
   /Users/danika/sifteo/include/sifteo/menu/events.h assets.gen.h
+<<<<<<< HEAD
+>>>>>>> 1de11d990e71ec5787a47be274f99c3bc337d7c1
+=======
 >>>>>>> 1de11d990e71ec5787a47be274f99c3bc337d7c1
 
 /Users/danika/sifteo/include/sifteo.h:
