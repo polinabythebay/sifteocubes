@@ -9,6 +9,7 @@
 #include <sifteo.h>
 #include <sifteo/menu.h>
 #include "assets.gen.h"
+#include "loader.h"
 using namespace Sifteo;
 
 // Static Globals
@@ -48,10 +49,6 @@ static void begin() {
         vid.bg0.erase(StripeTile);
     }
 }
-
-
-
-
 
 
 

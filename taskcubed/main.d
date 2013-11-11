@@ -41,7 +41,7 @@ main.o: main.cpp /Users/Goddess/Documents/CS/sifteocubes/include/sifteo.h \
   /Users/Goddess/Documents/CS/sifteocubes/include/sifteo/menu/public.h \
   /Users/Goddess/Documents/CS/sifteocubes/include/sifteo/menu/states.h \
   /Users/Goddess/Documents/CS/sifteocubes/include/sifteo/menu/events.h \
-  assets.gen.h
+  assets.gen.h loader.h
 
 /Users/Goddess/Documents/CS/sifteocubes/include/sifteo.h:
 
@@ -130,3 +130,5 @@ main.o: main.cpp /Users/Goddess/Documents/CS/sifteocubes/include/sifteo.h \
 /Users/Goddess/Documents/CS/sifteocubes/include/sifteo/menu/events.h:
 
 assets.gen.h:
+
+loader.h:
