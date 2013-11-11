@@ -19,23 +19,19 @@ static VideoBuffer gVideo[gNumCubes];
 static struct MenuItem gItems[] = { {&task1, &LabelEmpty}, {&task2, &LabelEmpty}, {&task3, &LabelEmpty},{NULL, NULL} };
 static struct MenuItem gItems1[] = { {&task1, &LabelEmpty}, {&task2, &LabelEmpty}, {&task3, &LabelEmpty},{NULL, NULL} };
 static struct MenuItem gItems2[] = { {&task1, &LabelEmpty}, {&task2, &LabelEmpty}, {&task3, &LabelEmpty},{NULL, NULL} };
-//{&IconChroma, &LabelChroma}, {&IconSandwich, &LabelSandwich}, {&IconPeano, &LabelPeano}, {&IconBuddy, &LabelBuddy}, {&IconChroma, NULL}, 
 
 static struct MenuItem clickItems[] = { {&task1, &LabelEmpty}, {&task2, &LabelEmpty} , {&task3, &LabelEmpty} };
 static struct MenuItem selectItems[] = { {&task1_selected, &LabelEmpty}, {&task2_selected, &LabelEmpty}, {&task3_selected, &LabelEmpty} };
 static struct MenuItem completeItems[] = { {&task1_complete, &LabelEmpty}, {&task2_complete, &LabelEmpty}, {&task3_complete, &LabelEmpty}};
 
-
-
-static struct MenuAssets gAssets = {&PurpleTile, &Footer, &LabelEmpty, {NULL}};
 static struct MenuAssets gAssets1 = {&BgTile, &Footer, &LabelEmpty, {NULL}};
-//{&helloworld, NULL}
-static AssetSlot MainSlot = AssetSlot::allocate() //{&Tip0, &Tip1, &Tip2, NULL}
+
+static AssetSlot MainSlot = AssetSlot::allocate()
     .bootstrap(BetterflowAssets);
 
 static Metadata M = Metadata()
-    .title("Menu SDK Demo")
-    .package("com.sifteo.sdk.menudemo", "1.0.0")
+    .title("TaskCubed")
+    .package("edu.wellesley.taskcubed", "1.0.0")
     .icon(Icon)
     .cubeRange(gNumCubes);
 
@@ -183,6 +179,7 @@ void main()
                 case MENU_NEIGHBOR_ADD:
                     LOG("E: found cube %d on side %d of menu (neighbor's %d side)\n",
                          e.neighbor.neighbor, e.neighbor.masterSide, e.neighbor.neighborSide);
+                    //e.replaceLabel
                     break;
 
                 case MENU_NEIGHBOR_REMOVE:
