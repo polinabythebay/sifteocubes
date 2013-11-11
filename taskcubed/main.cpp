@@ -46,11 +46,6 @@ static void begin() {
 }
 
 
-
-
-
-
-
 void main()
 {
     begin();
