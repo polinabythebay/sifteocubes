@@ -72,25 +72,24 @@ void main()
 
 
     //task status for cube 1
-    int item_0_status= 0;
-    int item_1_status= 0;
-    int item_2_status=0;
+    int item_0_status = 0;
+    int item_1_status = 0;
+    int item_2_status = 0;
 
      //task status for cube 2
-    int item1_0_status= 0;
-    int item1_1_status= 0;
-    int item1_2_status=0;
+    int item1_0_status = 0;
+    int item1_1_status = 0;
+    int item1_2_status = 0;
 
      //task status for cube 3
-    int item2_0_status= 0;
-    int item2_1_status= 0;
-    int item2_2_status=0;
+    int item2_0_status = 0;
+    int item2_1_status = 0;
+    int item2_2_status = 0;
 
     //indicates MenuEvent needs to ASSERT(e.type == MENU_EXIT);
-    int assert_indicator=0;
+    int assert_indicator = 0;
 
     //NOTE: need to use menudemo.elf, it's the only one that changes--> need to figure out how to fix that
-
 
     struct MenuEvent e;
     struct MenuEvent e1;
@@ -182,7 +181,57 @@ void main()
                 case MENU_NEIGHBOR_ADD:
                     LOG("E: found cube %d on side %d of menu (neighbor's %d side)\n",
                          e.neighbor.neighbor, e.neighbor.masterSide, e.neighbor.neighborSide);
-                    //e.replaceLabel
+                    if (e.item == 0) { //cube 1 is assumed to be on item 1
+                        if (item_0_status == 0) { //red
+                            if (e.neighbor.neighbor == 1) { //neighbor is cube 2, assumed to be on item 2
+                                if (item1_1_status == 1) { //yellow
+                                    //make both cubes have orange label
+                                } else if (item1_1_status == 2) { //blue
+                                    //make both cubes have purple label
+                                }
+                            } else if (e.neighbor.neighbor == 2) { //neighbor is cube 3, assumed to be on item 3
+                                if (item1_1_status == 1) { //yellow
+                                    //make both cubes have orange label
+                                } else if (item1_1_status == 2) { //blue
+                                    //make both cubes have purple label
+                                }
+                            }
+                        } else if (item_0_status == 1) { //yellow
+                            if (e.neighbor.neighbor == 1) { //neighbor is cube 2, assumed to be on item 2
+                                if (item1_1_status == 0) { //red
+                                    //make both cubes have orange label
+                                } else if (item1_1_status == 2) { //blue
+                                    //make both cubes have purple label
+                                }
+                            } else if (e.neighbor.neighbor == 2) { //neighbor is cube 3, assumed to be on item 3
+                                if (item1_1_status == 0) { //red
+                                    //make both cubes have orange label
+                                } else if (item1_1_status == 2) { //blue
+                                    //make both cubes have purple label
+                                }
+                            }
+
+                        } else if (item_0_status == 2) { //blue
+                            if (e.neighbor.neighbor == 1) { //neighbor is cube 2, assumed to be on item 2
+                                if (item1_1_status == 0) { //red
+                                    //make both cubes have purple label
+                                } else if (item1_1_status == 1) { //yellow
+                                    //make both cubes have green label
+                                }
+                            } else if (e.neighbor.neighbor == 2) { //neighbor is cube 3, assumed to be on item 3
+                                if (item1_1_status == 0) { //red
+                                    //make both cubes have purple label
+                                } else if (item1_1_status == 1) { //yellow
+                                    //make both cubes have green label
+                                }
+                            }
+
+                        }
+                    } else if (e.item == 1) {
+                        //haha lol
+                    } else if (e.item == 2) {
+                        //nope
+                    }
                     break;
 
                 case MENU_NEIGHBOR_REMOVE:
