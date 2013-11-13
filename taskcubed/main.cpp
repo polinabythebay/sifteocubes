@@ -23,6 +23,8 @@ static struct MenuItem clickItems[] = { {&task1, &LabelEmpty}, {&task2, &LabelEm
 static struct MenuItem selectItems[] = { {&task1_selected, &LabelEmpty}, {&task2_selected, &LabelEmpty}, {&task3_selected, &LabelEmpty} };
 static struct MenuItem completeItems[] = { {&task1_complete, &LabelEmpty}, {&task2_complete, &LabelEmpty}, {&task3_complete, &LabelEmpty}};
 
+static struct MenuItem labelItems[] = {{&dummy_icon, &purple_label}, {&dummy_icon, &orange_label}, {&dummy_icon, &green_label}, {NULL, NULL}}; 
+
 static struct MenuAssets gAssets1 = {&BgTile, &Footer, &LabelEmpty, {NULL}};
 
 static AssetSlot MainSlot = AssetSlot::allocate()
@@ -177,33 +179,62 @@ void main()
                 case MENU_NEIGHBOR_ADD:
                     LOG("E: found cube %d on side %d of menu (neighbor's %d side)\n",
                          e.neighbor.neighbor, e.neighbor.masterSide, e.neighbor.neighborSide);
-                    if (e.item == 0) { //cube 1 is assumed to be on item 1
+
+                    if (item_0_status == 1 || item_1_status == 1 || item_2_status == 1) {
+                        //if we are yellow, make orange
+                        m0.replaceIcon(e.item, selectItems[e.item].icon, labelItems[1].label);
+                        m0.anchor(e.item);
+                    } else if (item_0_status == 2 || item_1_status == 2 || item_2_status == 2) {
+                        //if we are blue, make purple
+                        m0.replaceIcon(e.item, completeItems[e.item].icon, labelItems[0].label);
+                        m0.anchor(e.item);
+                    }
+                    
+
+
+                    /*if (e.item == 0) { //cube 1 is assumed to be on item 1
                         if (item_0_status == 0) { //red
                             if (e.neighbor.neighbor == 1) { //neighbor is cube 2, assumed to be on item 2
                                 if (item1_1_status == 1) { //yellow
                                     //make both cubes have orange label
+                                    m0.replaceIcon(e.item, selectItems[0].icon, labelItems[1].label);
+                                    m0.anchor(e.item);
                                 } else if (item1_1_status == 2) { //blue
                                     //make both cubes have purple label
+                                    m0.replaceIcon(e.item, selectItems[0].icon, labelItems[0].label);
+                                    m0.anchor(e.item);
                                 }
                             } else if (e.neighbor.neighbor == 2) { //neighbor is cube 3, assumed to be on item 3
                                 if (item1_1_status == 1) { //yellow
                                     //make both cubes have orange label
+                                    m0.replaceIcon(e.item, selectItems[0].icon, labelItems[1].label);
+                                    m0.anchor(e.item);
                                 } else if (item1_1_status == 2) { //blue
                                     //make both cubes have purple label
+                                    m0.replaceIcon(e.item, selectItems[0].icon, labelItems[0].label);
+                                    m0.anchor(e.item);
                                 }
                             }
                         } else if (item_0_status == 1) { //yellow
                             if (e.neighbor.neighbor == 1) { //neighbor is cube 2, assumed to be on item 2
                                 if (item1_1_status == 0) { //red
                                     //make both cubes have orange label
+                                    m0.replaceIcon(e.item, clickItems[0].icon, labelItems[1].label);
+                                    m0.anchor(e.item);
                                 } else if (item1_1_status == 2) { //blue
                                     //make both cubes have purple label
+                                    m0.replaceIcon(e.item, clickItems[0].icon, labelItems[0].label);
+                                    m0.anchor(e.item);
                                 }
                             } else if (e.neighbor.neighbor == 2) { //neighbor is cube 3, assumed to be on item 3
                                 if (item1_1_status == 0) { //red
                                     //make both cubes have orange label
+                                    m0.replaceIcon(e.item, clickItems[0].icon, labelItems[1].label);
+                                    m0.anchor(e.item);
                                 } else if (item1_1_status == 2) { //blue
                                     //make both cubes have purple label
+                                    m0.replaceIcon(e.item, clickItems[0].icon, labelItems[0].label);
+                                    m0.anchor(e.item);
                                 }
                             }
 
@@ -211,14 +242,22 @@ void main()
                             if (e.neighbor.neighbor == 1) { //neighbor is cube 2, assumed to be on item 2
                                 if (item1_1_status == 0) { //red
                                     //make both cubes have purple label
+                                    m0.replaceIcon(e.item, completeItems[0].icon, labelItems[0].label);
+                                    m0.anchor(e.item);
                                 } else if (item1_1_status == 1) { //yellow
                                     //make both cubes have green label
+                                    m0.replaceIcon(e.item, completeItems[0].icon, labelItems[2].label);
+                                    m0.anchor(e.item);
                                 }
                             } else if (e.neighbor.neighbor == 2) { //neighbor is cube 3, assumed to be on item 3
                                 if (item1_1_status == 0) { //red
                                     //make both cubes have purple label
+                                    m0.replaceIcon(e.item, completeItems[0].icon, labelItems[0].label);
+                                    m0.anchor(e.item);
                                 } else if (item1_1_status == 1) { //yellow
                                     //make both cubes have green label
+                                    m0.replaceIcon(e.item, completeItems[0].icon, labelItems[2].label);
+                                    m0.anchor(e.item);
                                 }
                             }
 
@@ -227,12 +266,13 @@ void main()
                         //haha lol
                     } else if (e.item == 2) {
                         //nope
-                    }
+                    }*/
                     break;
 
                 case MENU_NEIGHBOR_REMOVE:
                     LOG("E: lost cube %d on side %d of menu (neighbor's %d side)\n",
                          e.neighbor.neighbor, e.neighbor.masterSide, e.neighbor.neighborSide);
+                    
                     break;
 
                 case MENU_ITEM_ARRIVE:
