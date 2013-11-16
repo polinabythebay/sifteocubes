@@ -149,9 +149,9 @@ void Game::draw()
         GameCube &gc = getGameCube(i);
         
         gc.draw();
-        /*
+        
         for (unsigned i = 0; i < NUM_PARTICLES; i++)
-            particles[i].draw(&gc, i);*/
+            particles[i].draw(&gc, i);
     }
 }
 
@@ -163,11 +163,12 @@ void Game::run()
         ts.next();
         
         // Real-time for animations
-        animate(ts.delta());
+        animate(ts.delta()); //THIS ANIMATES THE BARS ON THE SIDES
         
+        //This allows the particles to move around and stuff
         // Fixed timesteps for physics
-        for (int i = physicsClock.tick(ts.delta()); i; i--)
-            doPhysics(physicsClock.getPeriod());
+        //for (int i = physicsClock.tick(ts.delta()); i; i--)
+         //   doPhysics(physicsClock.getPeriod());
 
         // Put stuff on the screen!
         draw();
