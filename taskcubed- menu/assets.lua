@@ -16,13 +16,24 @@ task1 = image{"task1.png"}
 task2 = image{"task2.png"}
 task3 = image{"task3.png"}
 
-task1_complete = image{"task1complete.png"}
-task2_complete = image{"task2complete.png"}
-task3_complete = image{"task3complete.png"}
 
-task1_selected = image{"task1_selected.png"}
-task2_selected = image{"task2_selected.png"}
-task3_selected = image{"task3_selected.png"}
+task1Duration = image{"task1Duration.png"}
+task2Duration = image{"task2Duration.png"}
+task3Duration = image{"task3Duration.png"}
+
+task1Pic = image{"task1Pic.png"}
+task2Pic = image{"task2Pic.png"}
+task3Pic = image{"task3Pic.png"}
+
+task = image{"task.png"}
+
+task_complete = image{"task_complete.png"}
+-- task2_complete = image{"task_complete.png"}
+-- task3_complete = image{"task_complete.png"}
+
+task_selected = image{"task_selected.png"}
+--task2_selected = image{"task_selected.png"}
+--task3_selected = image{"task_selected.png"}
 
 purple_label = image{"purple.png"}
 orange_label = image{"orange.png"}

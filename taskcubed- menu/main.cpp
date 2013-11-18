@@ -15,13 +15,21 @@ using namespace Sifteo;
 static const unsigned gNumCubes = 3;
 static VideoBuffer gVideo[gNumCubes];
 
-static struct MenuItem gItems[] = { {&task1, &LabelEmpty}, {&task2, &LabelEmpty}, {&task3, &LabelEmpty},{NULL, NULL} };
-static struct MenuItem gItems1[] = { {&task1, &LabelEmpty}, {&task2, &LabelEmpty}, {&task3, &LabelEmpty},{NULL, NULL} };
-static struct MenuItem gItems2[] = { {&task1, &LabelEmpty}, {&task2, &LabelEmpty}, {&task3, &LabelEmpty},{NULL, NULL} };
+static struct MenuItem gItems[] = { {&task1, &LabelEmpty}, {&task2, &LabelEmpty}, {&task3, &LabelEmpty},{&task1, &LabelEmpty}, {NULL, NULL} };
+static struct MenuItem gItems1[] = { {&task1, &LabelEmpty}, {&task2, &LabelEmpty}, {&task3, &LabelEmpty}, {&task1, &LabelEmpty},{NULL, NULL} };
+static struct MenuItem gItems2[] = { {&task1, &LabelEmpty}, {&task2, &LabelEmpty}, {&task3, &LabelEmpty},{&task1, &LabelEmpty},{NULL, NULL} };
 
-static struct MenuItem clickItems[] = { {&task1, &LabelEmpty}, {&task2, &LabelEmpty} , {&task3, &LabelEmpty} };
-static struct MenuItem selectItems[] = { {&task1_selected, &LabelEmpty}, {&task2_selected, &LabelEmpty}, {&task3_selected, &LabelEmpty} };
-static struct MenuItem completeItems[] = { {&task1_complete, &LabelEmpty}, {&task2_complete, &LabelEmpty}, {&task3_complete, &LabelEmpty}};
+static struct MenuItem clickItems[] = { {&task, &LabelEmpty}, {&task, &LabelEmpty} , {&task, &LabelEmpty} };
+static struct MenuItem selectItems[] = { {&task_selected, &LabelEmpty}, {&task_selected, &LabelEmpty}, {&task_selected, &LabelEmpty} };
+static struct MenuItem completeItems[] = { {&task_complete, &LabelEmpty}, {&task_complete, &LabelEmpty}, {&task_complete, &LabelEmpty}};
+static struct MenuItem picItems [] = {{&task1Pic, &LabelEmpty}, {&task2Pic, &LabelEmpty}, {&task3Pic, &LabelEmpty} };
+static struct MenuItem durationItems [] = {{&task1Duration, &LabelEmpty}, {&task2Duration, &LabelEmpty}, {&task3Duration, &LabelEmpty}};
+static struct MenuItem taskItems[] = {{&task1, &LabelEmpty}, {&task2, &LabelEmpty}, {&task3, &LabelEmpty}};
+
+
+
+//static struct MenuItem taskSelect [] = {{&task1Pic, &LabelEmpty}};
+
 
 static struct MenuItem labelItems[] = {{&dummy_icon, &purple_label}, {&dummy_icon, &orange_label}, {&dummy_icon, &green_label}, {NULL, NULL}}; 
 
@@ -112,58 +120,132 @@ void main()
                     if (e.item ==0){
                         //if this is the first time you've clicked the first item
                         if (item_0_status==0){
-                        m0.replaceIcon(e.item, selectItems[0].icon, selectItems[0].label);
+                            
+                        e.item = 1;
+                        m0.replaceIcon(e.item, picItems[0].icon, picItems[0].label);
+                        e.item = 2;
+                        m0.replaceIcon(e.item, durationItems[0].icon, durationItems[0].label);
+                        e.item = 3;
+                        m0.replaceIcon(e.item, clickItems[0].icon, clickItems[0].label);
+                        e.item = 0;
                         m0.anchor(e.item);
+                         
                         item_0_status=1;
+                        
+                     }//else if (item_0_status==1){
+
+                    //     e.item = 3;
+                    //     m0.replaceIcon(e.item, selectItems[0].icon, selectItems[0].label);
+                        
+                    //     //m0.anchor(e.item);
+                    //     item_0_status = 2;
+
+                    // }else if(item_0_status==2){
+
+                    //     e.item = 3;
+                    //     m0.replaceIcon(e.item, completeItems[0].icon, completeItems[0].label);
+                        
+                    //     //m0.anchor(e.item);
+                    //     item_0_status = 0;
+                    // }
                         //second time you've clicked first item
-                        } else if (item_0_status==1) {
-                            m0.replaceIcon(e.item, completeItems[0].icon, completeItems[0].label);
-                            item_0_status=2;
-                            m0.anchor(e.item);
-                        //third time you've clicked first item
-                        } else if (item_0_status==2){
-                            m0.replaceIcon(e.item, clickItems[0].icon, clickItems[0].label);
-                            item_0_status=0; //loop back to the first state
-                            m0.anchor(e.item); 
-                        }
+                        // } else if (item_0_status==1) {
+                        //     m0.replaceIcon(e.item, completeItems[0].icon, completeItems[0].label);
+                        //     item_0_status=2;
+                        //     m0.anchor(e.item);
+                        // //third time you've clicked first item
+                        // } else if (item_0_status==2){
+                        //     m0.replaceIcon(e.item, clickItems[0].icon, clickItems[0].label);
+                        //     item_0_status=0; //loop back to the first state
+                        //     m0.anchor(e.item); 
+                        // }
                     }
 
                      if (e.item ==1){
                         //if this is the first time you've clicked the 2nd item
-                        if (item_1_status==0){
-                            m0.replaceIcon(e.item, selectItems[1].icon, selectItems[1].label);
-                            m0.anchor(e.item);
-                            item_1_status=1;
+                        if (item_0_status==0){
+                            // m0.replaceIcon(e.item, selectItems[1].icon, selectItems[1].label);
+                            // m0.anchor(e.item);
+                            // item_1_status=1;
+                            e.item = 0;
+                         m0.replaceIcon(e.item, taskItems[1].icon, taskItems[1].label);   
+                        e.item = 1;
+                        m0.replaceIcon(e.item, picItems[2].icon, picItems[2].label);
+                        e.item = 2;
+                        m0.replaceIcon(e.item, durationItems[1].icon, durationItems[1].label);
+                        e.item = 3;
+                        m0.replaceIcon(e.item, clickItems[1].icon, clickItems[1].label);
+                        e.item = 0;
+                        m0.anchor(e.item);
+                         //e.item = 3;  
+                        item_0_status=1;
                         //second time you've clicked the 2nd item
-                        } else if (item_1_status==1) {
-                            m0.replaceIcon(e.item, completeItems[1].icon, completeItems[1].label);
-                            m0.anchor(e.item);
-                            item_1_status=2;
-                        //third time you've clicked the 2nd item
-                        } else if (item_1_status==2){
-                            m0.replaceIcon(e.item, clickItems[1].icon, clickItems[1].label);
-                            m0.anchor(e.item);
-                            item_1_status=0; //it'll loop back to the first state
-                        }
+                         } //else if (item_1_status==1) {
+                        //     m0.replaceIcon(e.item, completeItems[1].icon, completeItems[1].label);
+                        //     m0.anchor(e.item);
+                        //     item_1_status=2;
+                        // //third time you've clicked the 2nd item
+                        // } else if (item_1_status==2){
+                        //     m0.replaceIcon(e.item, clickItems[1].icon, clickItems[1].label);
+                        //     m0.anchor(e.item);
+                        //     item_1_status=0; //it'll loop back to the first state
+                        // }
                     }
 
                      if (e.item ==2){
                         //if this is the first time you've clicked the 3rd item
-                        if (item_2_status==0){
-                            m0.replaceIcon(e.item, selectItems[2].icon, selectItems[2].label);
-                            m0.anchor(e.item);
-                            item_2_status=1;
+                        if (item_0_status==0){
+                            e.item = 0;
+                         m0.replaceIcon(e.item, taskItems[2].icon, taskItems[2].label);   
+                        e.item = 1;
+                        m0.replaceIcon(e.item, picItems[1].icon, picItems[1].label);
+                        e.item = 2;
+                        m0.replaceIcon(e.item, durationItems[2].icon, durationItems[2].label);
+                        e.item = 3;
+                        m0.replaceIcon(e.item, clickItems[2].icon, clickItems[2].label);
+                        e.item = 0;
+                        m0.anchor(e.item);
+                         //e.item = 3;  
+                        item_0_status=1;
+                            // m0.replaceIcon(e.item, selectItems[2].icon, selectItems[2].label);
+                            // m0.anchor(e.item);
+                            // item_2_status=1;
                             //2nd time you've clicked the 3rd item
-                        } else if (item_2_status==1) {
-                            m0.replaceIcon(e.item, completeItems[2].icon, completeItems[2].label);
-                            m0.anchor(e.item);
-                            item_2_status=2;
-                            //third time you've clicked the 3rd item
-                        } else if (item_2_status==2){
-                            m0.replaceIcon(e.item, clickItems[2].icon, clickItems[2].label);
-                            m0.anchor(e.item);
-                            item_2_status=0; //it'll loop back to the first state 
+                         } //else if (item_2_status==1) {
+                        //     m0.replaceIcon(e.item, completeItems[2].icon, completeItems[2].label);
+                        //     m0.anchor(e.item);
+                        //     item_2_status=2;
+                        //     //third time you've clicked the 3rd item
+                        // } else if (item_2_status==2){
+                        //     m0.replaceIcon(e.item, clickItems[2].icon, clickItems[2].label);
+                        //     m0.anchor(e.item);
+                        //     item_2_status=0; //it'll loop back to the first state 
+                        // }
+                    }
+
+                    if (e.item==3)
+                    {
+                        if(item_0_status==1){
+                            m0.replaceIcon(e.item, selectItems[0].icon, selectItems[0].label);
+                            item_0_status = 2;
+
+                        }else if(item_0_status==2){
+
+                           m0.replaceIcon(e.item, completeItems[0].icon, completeItems[0].label);
+                           item_0_status = 3; 
+                        }else if (item_0_status==3)
+                        {
+                            e.item = 0;
+                            m0.replaceIcon(e.item, taskItems[0].icon, taskItems[0].label);
+                            e.item = 1;
+                            m0.replaceIcon(e.item, taskItems[1].icon, taskItems[1].label);
+                            e.item = 2;
+                            m0.replaceIcon(e.item, taskItems[2].icon, taskItems[2].label);
+                            e.item = 3;
+                            m0.replaceIcon(e.item, taskItems[0].icon, taskItems[0].label);
+                            item_0_status = 0;
                         }
+
                     }
 
                    assert_indicator =1; 
@@ -309,57 +391,108 @@ void main()
                     if (e1.item ==0){
                         //if this is the first time you've clicked the first item
                         if (item1_0_status==0){
-                        m1.replaceIcon(e1.item, selectItems[0].icon, selectItems[0].label);
+                        e1.item = 1;
+                        m1.replaceIcon(e1.item, picItems[0].icon, picItems[0].label);
+                        e1.item = 2;
+                        m1.replaceIcon(e1.item, durationItems[0].icon, durationItems[0].label);
+                        e1.item = 3;
+                        m1.replaceIcon(e1.item, clickItems[0].icon, clickItems[0].label);
+                        e1.item = 0;
                         m1.anchor(e1.item);
+                         
                         item1_0_status=1;
-                        //second time you've clicked first item
-                        } else if (item1_0_status==1) {
-                            m1.replaceIcon(e1.item, completeItems[0].icon, completeItems[0].label);
-                            item1_0_status=2;
-                            m1.anchor(e1.item);
-                        //third time you've clicked first item
-                        } else if (item1_0_status==2){
-                            m1.replaceIcon(e1.item, clickItems[0].icon, clickItems[0].label);
-                            item1_0_status=0; //loop back to the first state
-                            m1.anchor(e1.item); 
-                        }
+                         } //else if (item1_0_status==1) {
+                        //     m1.replaceIcon(e1.item, completeItems[0].icon, completeItems[0].label);
+                        //     item1_0_status=2;
+                        //     m1.anchor(e1.item);
+                        // //third time you've clicked first item
+                        // } else if (item1_0_status==2){
+                        //     m1.replaceIcon(e1.item, clickItems[0].icon, clickItems[0].label);
+                        //     item1_0_status=0; //loop back to the first state
+                        //     m1.anchor(e1.item); 
+                        // }
                     }
 
                      if (e1.item ==1){
                         //if this is the first time you've clicked the 2nd item
-                        if (item1_1_status==0){
-                            m1.replaceIcon(e1.item, selectItems[1].icon, selectItems[1].label);
-                            m1.anchor(e1.item);
-                            item1_1_status=1;
+                        if (item1_0_status==0){
+                            e1.item = 0;
+                         m1.replaceIcon(e1.item, taskItems[1].icon, taskItems[1].label);   
+                        e1.item = 1;
+                        m1.replaceIcon(e1.item, picItems[2].icon, picItems[2].label);
+                        e1.item = 2;
+                        m1.replaceIcon(e1.item, durationItems[1].icon, durationItems[1].label);
+                        e1.item = 3;
+                        m1.replaceIcon(e1.item, clickItems[1].icon, clickItems[1].label);
+                        e1.item = 0;
+                        m1.anchor(e1.item);
+                        
+                        item1_0_status=1;
                         //second time you've clicked the 2nd item
-                        } else if (item1_1_status==1) {
-                            m1.replaceIcon(e1.item, completeItems[1].icon, completeItems[1].label);
-                            m1.anchor(e1.item);
-                            item1_1_status=2;
-                        //third time you've clicked the 2nd item
-                        } else if (item1_1_status==2){
-                            m1.replaceIcon(e1.item, clickItems[1].icon, clickItems[1].label);
-                            m1.anchor(e1.item);
-                            item1_1_status=0; //it'll loop back to the first state
-                        }
+                        } //else if (item1_1_status==1) {
+                        //     m1.replaceIcon(e1.item, completeItems[1].icon, completeItems[1].label);
+                        //     m1.anchor(e1.item);
+                        //     item1_1_status=2;
+                        // //third time you've clicked the 2nd item
+                        // } else if (item1_1_status==2){
+                        //     m1.replaceIcon(e1.item, clickItems[1].icon, clickItems[1].label);
+                        //     m1.anchor(e1.item);
+                        //     item1_1_status=0; //it'll loop back to the first state
+                        // }
                     }
 
                      if (e1.item ==2){
                         //if this is the first time you've clicked the 3rd item
-                        if (item1_2_status==0){
-                            m1.replaceIcon(e1.item, selectItems[2].icon, selectItems[2].label);
-                            m1.anchor(e1.item);
-                            item1_2_status=1;
+                        if (item1_0_status==0){
+                            e1.item = 0;
+                         m1.replaceIcon(e1.item, taskItems[2].icon, taskItems[2].label);   
+                        e1.item = 1;
+                        m1.replaceIcon(e1.item, picItems[1].icon, picItems[1].label);
+                        e1.item = 2;
+                        m1.replaceIcon(e1.item, durationItems[2].icon, durationItems[2].label);
+                        e1.item = 3;
+                        m1.replaceIcon(e1.item, clickItems[2].icon, clickItems[2].label);
+                        e1.item = 0;
+                        m1.anchor(e1.item);
+                         
+                        item1_0_status=1;
+                            // m1.replaceIcon(e1.item, selectItems[2].icon, selectItems[2].label);
+                            // m1.anchor(e1.item);
+                            // item1_2_status=1;
                             //2nd time you've clicked the 3rd item
-                        } else if (item1_2_status==1) {
-                            m1.replaceIcon(e1.item, completeItems[2].icon, completeItems[2].label);
-                            m1.anchor(e1.item);
-                            item1_2_status=2;
-                            //third time you've clicked the 3rd item
-                        } else if (item1_2_status==2){
-                            m1.replaceIcon(e1.item, clickItems[2].icon, clickItems[2].label);
-                            m1.anchor(e1.item);
-                            item1_2_status=0; //it'll loop back to the first state 
+                        } //else if (item1_2_status==1) {
+                        //     m1.replaceIcon(e1.item, completeItems[2].icon, completeItems[2].label);
+                        //     m1.anchor(e1.item);
+                        //     item1_2_status=2;
+                        //     //third time you've clicked the 3rd item
+                        // } else if (item1_2_status==2){
+                        //     m1.replaceIcon(e1.item, clickItems[2].icon, clickItems[2].label);
+                        //     m1.anchor(e1.item);
+                        //     item1_2_status=0; //it'll loop back to the first state 
+                        // }
+                    }
+
+                    if (e1.item==3)
+                    {
+                        if(item1_0_status==1){
+                            m1.replaceIcon(e1.item, selectItems[0].icon, selectItems[0].label);
+                            item1_0_status = 2;
+
+                        }else if(item1_0_status==2){
+
+                           m1.replaceIcon(e1.item, completeItems[0].icon, completeItems[0].label);
+                           item1_0_status = 3; 
+                        }else if (item1_0_status==3)
+                        {
+                            e1.item = 0;
+                            m1.replaceIcon(e1.item, taskItems[0].icon, taskItems[0].label);
+                            e1.item = 1;
+                            m1.replaceIcon(e1.item, taskItems[1].icon, taskItems[1].label);
+                            e1.item = 2;
+                            m1.replaceIcon(e1.item, taskItems[2].icon, taskItems[2].label);
+                            e1.item = 3;
+                            m1.replaceIcon(e1.item, taskItems[0].icon, taskItems[0].label);
+                            item1_0_status = 0;
                         }
                     }
 
@@ -418,57 +551,104 @@ void main()
                     if (e2.item ==0){
                         //if this is the first time you've clicked the first item
                         if (item2_0_status==0){
-                        m2.replaceIcon(e2.item, selectItems[0].icon, selectItems[0].label);
+                        e2.item = 1;
+                        m2.replaceIcon(e2.item, picItems[0].icon, picItems[0].label);
+                        e2.item = 2;
+                        m2.replaceIcon(e2.item, durationItems[0].icon, durationItems[0].label);
+                        e2.item = 3;
+                        m2.replaceIcon(e2.item, clickItems[0].icon, clickItems[0].label);
+                        e2.item = 0;
                         m2.anchor(e2.item);
+                         
                         item2_0_status=1;
-                        //second time you've clicked first item
-                        } else if (item2_0_status==1) {
-                            m2.replaceIcon(e2.item, completeItems[0].icon, completeItems[0].label);
-                            item2_0_status=2;
-                            m2.anchor(e2.item);
-                        //third time you've clicked first item
-                        } else if (item2_0_status==2){
-                            m2.replaceIcon(e2.item, clickItems[0].icon, clickItems[0].label);
-                            item2_0_status=0; //loop back to the first state
-                            m2.anchor(e2.item); 
-                        }
+                        } //else if (item2_0_status==1) {
+                        //     m2.replaceIcon(e2.item, completeItems[0].icon, completeItems[0].label);
+                        //     item2_0_status=2;
+                        //     m2.anchor(e2.item);
+                        // //third time you've clicked first item
+                        // } else if (item2_0_status==2){
+                        //     m2.replaceIcon(e2.item, clickItems[0].icon, clickItems[0].label);
+                        //     item2_0_status=0; //loop back to the first state
+                        //     m2.anchor(e2.item); 
+                        // }
                     }
 
                      if (e2.item ==1){
                         //if this is the first time you've clicked the 2nd item
-                        if (item2_1_status==0){
-                            m2.replaceIcon(e2.item, selectItems[1].icon, selectItems[1].label);
-                            m2.anchor(e2.item);
-                            item2_1_status=1;
+                        if (item2_0_status==0){
+                            e2.item = 0;
+                         m2.replaceIcon(e2.item, taskItems[1].icon, taskItems[1].label);   
+                        e2.item = 1;
+                        m2.replaceIcon(e2.item, picItems[2].icon, picItems[2].label);
+                        e2.item = 2;
+                        m2.replaceIcon(e2.item, durationItems[1].icon, durationItems[1].label);
+                        e2.item = 3;
+                        m2.replaceIcon(e2.item, clickItems[1].icon, clickItems[1].label);
+                        e2.item = 0;
+                        m2.anchor(e2.item);
+                        
+                        item2_0_status=1;
                         //second time you've clicked the 2nd item
-                        } else if (item2_1_status==1) {
-                            m2.replaceIcon(e2.item, completeItems[1].icon, completeItems[1].label);
-                            m2.anchor(e2.item);
-                            item2_1_status=2;
-                        //third time you've clicked the 2nd item
-                        } else if (item2_1_status==2){
-                            m2.replaceIcon(e2.item, clickItems[1].icon, clickItems[1].label);
-                            m2.anchor(e2.item);
-                            item2_1_status=0; //it'll loop back to the first state
-                        }
+                        } //else if (item2_1_status==1) {
+                        //     m2.replaceIcon(e2.item, completeItems[1].icon, completeItems[1].label);
+                        //     m2.anchor(e2.item);
+                        //     item2_1_status=2;
+                        // //third time you've clicked the 2nd item
+                        // } else if (item2_1_status==2){
+                        //     m2.replaceIcon(e2.item, clickItems[1].icon, clickItems[1].label);
+                        //     m2.anchor(e2.item);
+                        //     item2_1_status=0; //it'll loop back to the first state
+                        // }
                     }
 
                      if (e2.item ==2){
                         //if this is the first time you've clicked the 3rd item
-                        if (item2_2_status==0){
-                            m2.replaceIcon(e2.item, selectItems[2].icon, selectItems[2].label);
-                            m2.anchor(e2.item);
-                            item2_2_status=1;
-                            //2nd time you've clicked the 3rd item
-                        } else if (item2_2_status==1) {
-                            m2.replaceIcon(e2.item, completeItems[2].icon, completeItems[2].label);
-                            m2.anchor(e2.item);
-                            item2_2_status=2;
-                            //third time you've clicked the 3rd item
-                        } else if (item2_2_status==2){
-                            m2.replaceIcon(e2.item, clickItems[2].icon, clickItems[2].label);
-                            m2.anchor(e2.item);
-                            item2_2_status=0; //it'll loop back to the first state 
+                        if (item2_0_status==0){
+                            e2.item = 0;
+                         m2.replaceIcon(e2.item, taskItems[2].icon, taskItems[2].label);   
+                        e2.item = 1;
+                        m2.replaceIcon(e2.item, picItems[1].icon, picItems[1].label);
+                        e2.item = 2;
+                        m2.replaceIcon(e2.item, durationItems[2].icon, durationItems[2].label);
+                        e2.item = 3;
+                        m2.replaceIcon(e2.item, clickItems[2].icon, clickItems[2].label);
+                        e2.item = 0;
+                        m2.anchor(e2.item);
+                         
+                        item2_0_status=1;
+                        } //else if (item2_2_status==1) {
+                        //     m2.replaceIcon(e2.item, completeItems[2].icon, completeItems[2].label);
+                        //     m2.anchor(e2.item);
+                        //     item2_2_status=2;
+                        //     //third time you've clicked the 3rd item
+                        // } else if (item2_2_status==2){
+                        //     m2.replaceIcon(e2.item, clickItems[2].icon, clickItems[2].label);
+                        //     m2.anchor(e2.item);
+                        //     item2_2_status=0; //it'll loop back to the first state 
+                        // }
+                    }
+
+                    if (e2.item==3) 
+                    {
+                        if(item2_0_status==1){
+                            m2.replaceIcon(e2.item, selectItems[0].icon, selectItems[0].label);
+                            item2_0_status = 2;
+
+                        }else if(item2_0_status==2){
+
+                           m2.replaceIcon(e2.item, completeItems[0].icon, completeItems[0].label);
+                           item2_0_status = 3; 
+                        }else if (item2_0_status==3)
+                        {
+                            e2.item = 0;
+                            m2.replaceIcon(e2.item, taskItems[0].icon, taskItems[0].label);
+                            e2.item = 1;
+                            m2.replaceIcon(e2.item, taskItems[1].icon, taskItems[1].label);
+                            e2.item = 2;
+                            m2.replaceIcon(e2.item, taskItems[2].icon, taskItems[2].label);
+                            e2.item = 3;
+                            m2.replaceIcon(e2.item, taskItems[0].icon, taskItems[0].label);
+                            item2_0_status = 0;
                         }
                     }
 
