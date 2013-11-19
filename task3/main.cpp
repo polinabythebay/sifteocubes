@@ -40,7 +40,7 @@ static struct MenuAssets gAssets = {&BgTile, &Footer, &LabelEmpty, {NULL}};
 
 struct TaskCube {
     int task; //0, 1, 2, or 255 = menu
-    int status; // 0 = red, 1 = yellow, 2 = blue
+    int status; // 0 = red, 1 = yellow, 2 = blue, or 255 = nothing
 };
 
 static struct TaskCube cubes[gNumCubes];
@@ -73,8 +73,9 @@ static int barSpriteCount(CubeID cid) {
 }
 
 static bool showSideBar(CubeID cid, Side s) {
-    // if cid is not showing a bar on side s, show it and check if the
-    // smiley should wake up
+    // if cid is not showing a bar on side s, show it
+
+    //To-Do: add logic for different colored bars based on the statuses of the cubes.
     ASSERT(activeCubes.test(cid));
     if (vbuf[cid].sprites[s].isHidden()) {
         vbuf[cid].sprites[s].setImage(Bars[s]);
@@ -86,8 +87,7 @@ static bool showSideBar(CubeID cid, Side s) {
 }
 
 static bool hideSideBar(CubeID cid, Side s) {
-    // if cid is showing a bar on side s, hide it and check if the
-    // smiley should go to sleep
+    // if cid is showing a bar on side s, hide it
     ASSERT(activeCubes.test(cid));
     if (!vbuf[cid].sprites[s].isHidden()) {
         vbuf[cid].sprites[s].hide();
@@ -101,7 +101,10 @@ static void activateCube(CubeID cid, int task) {
     // mark cube as active and render its canvas
     activeCubes.mark(cid);
     vbuf[cid].initMode(BG0_SPR_BG1);
+
+    //this is where the starting image is set (after a task is set and we exit the menu) 
     vbuf[cid].bg0.image(vec(0,0), TaskReds, task);
+
     auto neighbors = vbuf[cid].physicalNeighbors();
     for(int side=0; side<4; ++side) {
         if (neighbors.hasNeighborAt(Side(side))) {
@@ -186,20 +189,29 @@ static bool isActive(NeighborID nid) {
 
 static void onNeighborAdd(void* ctxt, unsigned cube0, unsigned side0, unsigned cube1, unsigned side1) {
     // update art on active cubes (not loading cubes or base)
-    if (isActive(cube0)) { showSideBar(cube0, Side(side0)); }
-    if (isActive(cube1)) { showSideBar(cube1, Side(side1)); }
+    if (isActive(cube0)) { 
+        showSideBar(cube0, Side(side0)); 
+    }
+    if (isActive(cube1)) { 
+        showSideBar(cube1, Side(side1)); 
+    }
 }
 
 static void onNeighborRemove(void* ctxt, unsigned cube0, unsigned side0, unsigned cube1, unsigned side1) {
     // update art on active cubes (not loading cubes or base)
-    if (isActive(cube0)) { hideSideBar(cube0, Side(side0)); }
-    if (isActive(cube1)) { hideSideBar(cube1, Side(side1)); }
+    if (isActive(cube0)) { 
+        hideSideBar(cube0, Side(side0)); 
+    }
+    if (isActive(cube1)) { 
+        hideSideBar(cube1, Side(side1)); 
+    }
 }
 
 static void onCubeTouch(void* ctxt, unsigned cid) {
     CubeID cube(cid);
     if (cube.isTouching() == true) { //only want touches, not untouches to trigger
 
+        //depending on the status of the cube, we want to change the picture
         switch (cubes[cid].status) {
             case 0: //status is red, so change to yellow
                 cubes[cid].status = 1;
@@ -213,7 +225,7 @@ static void onCubeTouch(void* ctxt, unsigned cid) {
                 cubes[cid].status = 255;
                 cubes[cid].task = 255;
                 break;
-            case 255: //cube is being activated
+            case 255: //cube is being activated from menu
                 cubes[cid].status = 0;
                 break;
         }
@@ -245,8 +257,8 @@ static void begin() {
 }
 
 void setTask(int task, CubeID cid) {
-    cubes[cid].task = task;
-    activateCube(cid, task);
+    cubes[cid].task = task; //update the task variable
+    activateCube(cid, task); //change the background, etc.
 
 }
 
@@ -256,7 +268,7 @@ void handleMenuEvent(Menu &m, int cid) {
     if (m.pollEvent(&e)) {
         switch (e.type) {
             case MENU_ITEM_PRESS: 
-                m.anchor(e.item);
+                m.anchor(e.item); //afaik this just makes the item "stick"
                 break;
 
             //stuff we don't care about
@@ -297,15 +309,15 @@ void main() {
     Menu m2(vbuf[2], &gAssets, cube2Items);
 
     while (1) { //forever
-        if (cubes[0].task == 255) {
+        if (cubes[0].task == 255) { //if cube 0 is in menu mode, handle menu events
             handleMenuEvent(m0, 0);
         }
         
-        if (cubes[1].task == 255) {
+        if (cubes[1].task == 255) { //if cube 1 is in menu mode, handle menu events
             handleMenuEvent(m1, 1);
         }
         
-        if (cubes[2].task == 255) {
+        if (cubes[2].task == 255) { //if cube 2 is in menu mode, handle menu events
             handleMenuEvent(m2, 2);
         }
 
