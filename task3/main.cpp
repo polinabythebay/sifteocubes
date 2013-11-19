@@ -262,7 +262,7 @@ void setTask(int task, CubeID cid) {
 
 }
 
-void handleMenuEvent(Menu &m, int cid) {
+void handleMenuEvents(Menu &m, int cid) {
     struct MenuEvent e;
 
     if (m.pollEvent(&e)) {
@@ -310,15 +310,15 @@ void main() {
 
     while (1) { //forever
         if (cubes[0].task == 255) { //if cube 0 is in menu mode, handle menu events
-            handleMenuEvent(m0, 0);
+            handleMenuEvents(m0, 0);
         }
         
         if (cubes[1].task == 255) { //if cube 1 is in menu mode, handle menu events
-            handleMenuEvent(m1, 1);
+            handleMenuEvents(m1, 1);
         }
         
         if (cubes[2].task == 255) { //if cube 2 is in menu mode, handle menu events
-            handleMenuEvent(m2, 2);
+            handleMenuEvents(m2, 2);
         }
 
         //handle events for connection
