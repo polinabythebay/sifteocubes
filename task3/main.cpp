@@ -38,12 +38,12 @@ static struct MenuItem cube1Items[] = { {&Task1_Icon, &LabelEmpty}, {&Task2_Icon
 static struct MenuItem cube2Items[] = { {&Task1_Icon, &LabelEmpty}, {&Task2_Icon, &LabelEmpty}, {&Task3_Icon, &LabelEmpty}, {NULL, NULL} };
 static struct MenuAssets gAssets = {&BgTile, &Footer, &LabelEmpty, {NULL}};
 
-struct TaskCube {
+struct CubeInfo {
     int task; //0, 1, 2, or 255 = menu
     int status; // 0 = red, 1 = yellow, 2 = blue, or 255 = nothing
 };
 
-static struct TaskCube cubes[gNumCubes];
+static struct CubeInfo taskCubes[gNumCubes];
 
 // FUNCTIONS
 
@@ -142,7 +142,7 @@ static void paintWrapper() {
 
     // repaint cubes
     for(CubeID cid : dirtyCubes) {
-        activateCube(cid, cubes[cid].task);
+        activateCube(cid, taskCubes[cid].task);
     }
     
     // also, handle lost cubes, if you so desire :)
@@ -212,24 +212,24 @@ static void onCubeTouch(void* ctxt, unsigned cid) {
     if (cube.isTouching() == true) { //only want touches, not untouches to trigger
 
         //depending on the status of the cube, we want to change the picture
-        switch (cubes[cid].status) {
+        switch (taskCubes[cid].status) {
             case 0: //status is red, so change to yellow
-                cubes[cid].status = 1;
-                vbuf[cid].bg0.image(vec(0,0), TaskYellows, cubes[cid].task);
+                taskCubes[cid].status = 1;
+                vbuf[cid].bg0.image(vec(0,0), TaskYellows, taskCubes[cid].task);
                 break;
             case 1: //status is yellow, so change to blue
-                cubes[cid].status = 2;
-                vbuf[cid].bg0.image(vec(0,0), TaskBlues, cubes[cid].task);
+                taskCubes[cid].status = 2;
+                vbuf[cid].bg0.image(vec(0,0), TaskBlues, taskCubes[cid].task);
                 break;
             case 2: //status is blue, so return to menu
-                cubes[cid].status = 255;
-                cubes[cid].task = 255;
+                taskCubes[cid].status = 255;
+                taskCubes[cid].task = 255;
                 break;
             case 255: //cube is being activated from menu
-                cubes[cid].status = 0;
+                taskCubes[cid].status = 0;
                 break;
         }
-        LOG("cube %d touched, status is now %d.\n", cid, cubes[cid].status); 
+        LOG("cube %d touched, status is now %d.\n", cid, taskCubes[cid].status); 
     }
 }
 
@@ -257,7 +257,7 @@ static void begin() {
 }
 
 void setTask(int task, CubeID cid) {
-    cubes[cid].task = task; //update the task variable
+    taskCubes[cid].task = task; //update the task variable
     activateCube(cid, task); //change the background, etc.
 
 }
@@ -297,10 +297,10 @@ void main() {
 
     begin();
 
-    //make TaskCube structs
+    //make CubeInfo structs
     for (int i = 0; i < gNumCubes; i++) {
-        cubes[i].task = 255;
-        cubes[i].status = 255;
+        taskCubes[i].task = 255;
+        taskCubes[i].status = 255;
     }
 
     //initialize menus
@@ -309,15 +309,15 @@ void main() {
     Menu m2(vbuf[2], &gAssets, cube2Items);
 
     while (1) { //forever
-        if (cubes[0].task == 255) { //if cube 0 is in menu mode, handle menu events
+        if (taskCubes[0].task == 255) { //if cube 0 is in menu mode, handle menu events
             handleMenuEvents(m0, 0);
         }
         
-        if (cubes[1].task == 255) { //if cube 1 is in menu mode, handle menu events
+        if (taskCubes[1].task == 255) { //if cube 1 is in menu mode, handle menu events
             handleMenuEvents(m1, 1);
         }
         
-        if (cubes[2].task == 255) { //if cube 2 is in menu mode, handle menu events
+        if (taskCubes[2].task == 255) { //if cube 2 is in menu mode, handle menu events
             handleMenuEvents(m2, 2);
         }
 
