@@ -335,15 +335,15 @@ void handleMotionEvents(int cid){
         
         if (taskCubes[cid].status==0){ //Not Started
 
-           vbuf[cid].bg0.image(vec(3,3), TaskReds, taskCubes[cid].task);  
+           vbuf[cid].bg0.image(vec(0,0), TaskReds, taskCubes[cid].task);  
         
         }else if (taskCubes[cid].status ==1){ //In Progress
 
-            vbuf[cid].bg0.image(vec(3,3), TaskYellows, taskCubes[cid].task); 
+            vbuf[cid].bg0.image(vec(0,0), TaskYellows, taskCubes[cid].task); 
 
         }else if (taskCubes[cid].status==2){ //Completed
 
-            vbuf[cid].bg0.image(vec(3,3), TaskBlues, taskCubes[cid].task); 
+            vbuf[cid].bg0.image(vec(0,0), TaskBlues, taskCubes[cid].task); 
         
         }
     }
