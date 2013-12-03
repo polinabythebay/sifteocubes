@@ -320,16 +320,15 @@ void handleMotionEvents(int cid){
     //updates the motion variables and booleans to current state
     if (taskCubes[cid].task!=255)
     {
-        /* code */
+
+        motion[cid].update();
     
-    unsigned changeFlags = motion[cid].update();
-    
-//if cube tilted up, change image to duration of task
+//if cube tilted right, change image to duration of task
     if((motion[cid].tilt.x)==1){
         
         vbuf[cid].bg0.image(vec(3,3), TaskDurations, taskCubes[cid].task);
         
-      //if cube tilted down, change image to Picture of task 
+      //if cube tilted left, change image to Picture of task 
     }else if((motion[cid].tilt.x)==-1){
         
        vbuf[cid].bg0.image(vec(3,3), TaskPics, taskCubes[cid].task); 
