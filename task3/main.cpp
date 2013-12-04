@@ -12,7 +12,7 @@ using namespace Sifteo;
 
 // METADATA
 
-static const unsigned gNumCubes = 3;
+static const unsigned gNumCubes = 6;
 
 static Metadata M = Metadata()
     .title("Task 3")
@@ -48,6 +48,9 @@ static AssetConfiguration<1> config; // global asset configuration (will just ho
 static struct MenuItem cube0Items[] = { {&Task1_Icon, &LabelEmpty}, {&Task2_Icon, &LabelEmpty}, {&Task3_Icon, &LabelEmpty}, {NULL, NULL} };
 static struct MenuItem cube1Items[] = { {&Task1_Icon, &LabelEmpty}, {&Task2_Icon, &LabelEmpty}, {&Task3_Icon, &LabelEmpty}, {NULL, NULL} };
 static struct MenuItem cube2Items[] = { {&Task1_Icon, &LabelEmpty}, {&Task2_Icon, &LabelEmpty}, {&Task3_Icon, &LabelEmpty}, {NULL, NULL} };
+static struct MenuItem cube3Items[] = { {&Task1_Icon, &LabelEmpty}, {&Task2_Icon, &LabelEmpty}, {&Task3_Icon, &LabelEmpty}, {NULL, NULL} };
+static struct MenuItem cube4Items[] = { {&Task1_Icon, &LabelEmpty}, {&Task2_Icon, &LabelEmpty}, {&Task3_Icon, &LabelEmpty}, {NULL, NULL} };
+static struct MenuItem cube5Items[] = { {&Task1_Icon, &LabelEmpty}, {&Task2_Icon, &LabelEmpty}, {&Task3_Icon, &LabelEmpty}, {NULL, NULL} };
 //static struct MenuItem cubePics[] = {{&task1Pic, &LabelEmpty}, {&task2Pic, &LabelEmpty}, {&task3Pic, &LabelEmpty}, {NULL, NULL}};
 //static struct MenuItem
 
@@ -375,6 +378,9 @@ void main() {
     Menu m0(vbuf[0], &gAssets, cube0Items);
     Menu m1(vbuf[1], &gAssets, cube1Items);
     Menu m2(vbuf[2], &gAssets, cube2Items);
+    Menu m3(vbuf[3], &gAssets, cube3Items);
+    Menu m4(vbuf[4], &gAssets, cube4Items);
+    Menu m5(vbuf[5], &gAssets, cube5Items);
 
     while (1) { //forever
         if (taskCubes[0].task == 255) { //if cube 0 is in menu mode, handle menu events
@@ -388,6 +394,18 @@ void main() {
         if (taskCubes[2].task == 255) { //if cube 2 is in menu mode, handle menu events
             handleMenuEvents(m2, 2);            
                 
+        } 
+        if(taskCubes[3].task==255){
+            handleMenuEvents(m3, 3);
+        }
+
+        if (taskCubes[4].task==255)
+        {
+            handleMenuEvents(m4, 4);
+        }
+        if (taskCubes[5].task==255)
+        {
+            handleMenuEvents(m5, 5);
         }
         
         //handle motion events once a task has been selected
