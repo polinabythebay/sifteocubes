@@ -30,11 +30,46 @@ TaskDurations = image{{"assets/task1Duration.png", "assets/task2Duration.png", "
 
 -- Connection Assets
 
-Bars = {
-	image{ "assets/bar_top.png", pinned=true },
-	image{ "assets/bar_left.png", pinned=true },
-	image{ "assets/bar_bottom.png", pinned=true },
-	image{ "assets/bar_right.png", pinned=true }
+RedBars = {
+	image{ "assets/rbar_vert.png", pinned=true },
+	image{ "assets/rbar_hor.png", pinned=true },
+	image{ "assets/rbar_vert.png", pinned=true },
+	image{ "assets/rbar_hor.png", pinned=true }
+}
+
+OrangeBars = {
+	image{ "assets/obar_vert.png", pinned=true },
+	image{ "assets/obar_hor.png", pinned=true },
+	image{ "assets/obar_vert.png", pinned=true },
+	image{ "assets/obar_hor.png", pinned=true }
+}
+
+YellowBars = {
+	image{ "assets/ybar_vert.png", pinned=true },
+	image{ "assets/ybar_hor.png", pinned=true },
+	image{ "assets/ybar_vert.png", pinned=true },
+	image{ "assets/ybar_hor.png", pinned=true }
+}
+
+GreenBars = {
+	image{ "assets/gbar_vert.png", pinned=true },
+	image{ "assets/gbar_hor.png", pinned=true },
+	image{ "assets/gbar_vert.png", pinned=true },
+	image{ "assets/gbar_hor.png", pinned=true }
+}
+
+BlueBars = {
+	image{ "assets/bbar_vert.png", pinned=true },
+	image{ "assets/bbar_hor.png", pinned=true },
+	image{ "assets/bbar_vert.png", pinned=true },
+	image{ "assets/bbar_hor.png", pinned=true }
+}
+
+PurpleBars = {
+	image{ "assets/pbar_vert.png", pinned=true },
+	image{ "assets/pbar_hor.png", pinned=true },
+	image{ "assets/pbar_vert.png", pinned=true },
+	image{ "assets/pbar_hor.png", pinned=true }
 }
 
 -- Animation Assets

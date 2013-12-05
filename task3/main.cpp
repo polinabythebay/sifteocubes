@@ -78,10 +78,10 @@ static Int2 getRestPosition(Side s) {
     // We use a switch so that the compiler can optimize this
     // however if feels is best.
     switch(s) {
-    case TOP: return vec(64 - Bars[0].pixelWidth()/2,0);
-    case LEFT: return vec(0, 64 - Bars[1].pixelHeight()/2);
-    case BOTTOM: return vec(64 - Bars[2].pixelWidth()/2, 128-Bars[2].pixelHeight());
-    case RIGHT: return vec(128-Bars[3].pixelWidth(), 64 - Bars[3].pixelHeight()/2);
+    case TOP: return vec(64 - RedBars[0].pixelWidth()/2,0);
+    case LEFT: return vec(0, 64 - RedBars[1].pixelHeight()/2);
+    case BOTTOM: return vec(64 - RedBars[2].pixelWidth()/2, 128-RedBars[2].pixelHeight());
+    case RIGHT: return vec(128-RedBars[3].pixelWidth(), 64 - RedBars[3].pixelHeight()/2);
     default: return vec(0,0);
     }
 }
@@ -98,13 +98,28 @@ static int barSpriteCount(CubeID cid) {
     return result;
 }
 
-static bool showSideBar(CubeID cid, Side s) {
+static bool showSideBar(CubeID cid, CubeID nb, Side s) {
     // if cid is not showing a bar on side s, show it
+    int stat1 = taskCubes[cid].status;
+    int stat2 = taskCubes[nb].status;
 
     //To-Do: add logic for different colored bars based on the statuses of the cubes.
     ASSERT(activeCubes.test(cid));
     if (vbuf[cid].sprites[s].isHidden()) {
-        vbuf[cid].sprites[s].setImage(Bars[s]);
+        switch (stat1 + stat2) {
+            case 0: vbuf[cid].sprites[s].setImage(RedBars[s]); break; //2 red -> red
+            case 1: vbuf[cid].sprites[s].setImage(OrangeBars[s]); break; //1 red, 1 yellow -> orange
+            case 2:
+                if (stat1 == 0 || stat1 == 2) { //1 red, 1 blue -> purple
+                    vbuf[cid].sprites[s].setImage(PurpleBars[s]);
+                    break;
+                } else {
+                    vbuf[cid].sprites[s].setImage(YellowBars[s]); //2 yellow -> yellow
+                    break; 
+                }
+            case 3: vbuf[cid].sprites[s].setImage(GreenBars[s]); break; //1 yellow, 1 blue -> green
+            case 4: vbuf[cid].sprites[s].setImage(BlueBars[s]); break; //2 blue -> blue
+        }
         vbuf[cid].sprites[s].move(getRestPosition(s));
         return true;
     } else {
@@ -134,7 +149,7 @@ static void activateCube(CubeID cid, int task) {
     auto neighbors = vbuf[cid].physicalNeighbors();
     for(int side=0; side<4; ++side) {
         if (neighbors.hasNeighborAt(Side(side))) {
-            showSideBar(cid, Side(side));
+            //showSideBar(cid, Side(side));
         } else {
             hideSideBar(cid, Side(side));
         }
@@ -215,11 +230,18 @@ static bool isActive(NeighborID nid) {
 
 static void onNeighborAdd(void* ctxt, unsigned cube0, unsigned side0, unsigned cube1, unsigned side1) {
     // update art on active cubes (not loading cubes or base)
-    if (isActive(cube0)) { 
-        showSideBar(cube0, Side(side0)); 
+    int stat1 = taskCubes[cube0].status;
+    int stat2 = taskCubes[cube1].status;
+
+    if (isActive(cube0)) {
+        if (stat1 != 255 && stat2 != 255) { 
+            showSideBar(cube0, cube1, Side(side0));
+        }   
     }
-    if (isActive(cube1)) { 
-        showSideBar(cube1, Side(side1)); 
+    if (isActive(cube1)) {
+        if (stat1 != 255 && stat2 != 255) { 
+            showSideBar(cube1, cube0, Side(side1));
+        }
     }
 }
 
