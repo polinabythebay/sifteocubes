@@ -34,7 +34,7 @@ void Game::title()
     unsigned frame = 1;
     for (CubeID i = 0; i < NUM_CUBES; ++i) {
         getGameCube(i).vid.initMode(BG0);
-        getGameCube(i).vid.bg0.image(vec(0,0), Title, frame);
+        getGameCube(i).vid.bg0.image(vec(0,0), Title, frame); //membrane title 
     }
 
     Random r;
@@ -62,10 +62,10 @@ void Game::title()
 void Game::init()
 {
     for (unsigned i = 0; i < NUM_CUBES; i++)
-        getGameCube(i).init();
+        getGameCube(i).init(); //PAINTS THE BACKGROUND 
         
     for (unsigned i = 0; i < NUM_PARTICLES; i++)
-        particles[i].instantiate(&getGameCube(i % NUM_CUBES));
+       // particles[i].instantiate(&getGameCube(i % NUM_CUBES));
 
     Events::neighborAdd.set(&Game::onNeighborAdd, this);
     Events::neighborRemove.set(&Game::onNeighborRemove, this);
@@ -81,8 +81,8 @@ void Game::cleanup()
 
 void Game::animate(float dt)
 {
-    for (unsigned i = 0; i < NUM_PARTICLES; i++)
-        particles[i].animate(dt);
+    //for (unsigned i = 0; i < NUM_PARTICLES; i++)
+      //  particles[i].animate(dt);
 
     for (unsigned i = 0; i < NUM_CUBES; i++)
         getGameCube(i).animate(dt);
@@ -130,6 +130,7 @@ void Game::onNeighborRemove(unsigned c0, unsigned s0, unsigned c1, unsigned s1)
     // Animate the portals closing
     getGameCube(c0).getPortal(s0).setOpen(false);
     getGameCube(c1).getPortal(s1).setOpen(false);
+    //LOG("GameCube "+c0+" and Game Cube "+c1+" just left each other");
 
     /*
      * When a cube is removed, that's when we check for matches. This lets you get a fourth
@@ -150,8 +151,9 @@ void Game::draw()
         
         gc.draw();
         
-        for (unsigned i = 0; i < NUM_PARTICLES; i++)
-            particles[i].draw(&gc, i);
+        //DRAWS THE PARTICLES 
+        //for (unsigned i = 0; i < NUM_PARTICLES; i++)
+        //   particles[i].draw(&gc, i);
     }
 }
 
@@ -167,8 +169,9 @@ void Game::run()
         
         //This allows the particles to move around and stuff
         // Fixed timesteps for physics
-        //for (int i = physicsClock.tick(ts.delta()); i; i--)
-         //   doPhysics(physicsClock.getPeriod());
+
+        for (int i = physicsClock.tick(ts.delta()); i; i--)
+            doPhysics(physicsClock.getPeriod());
 
         // Put stuff on the screen!
         draw();

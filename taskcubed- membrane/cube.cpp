@@ -22,6 +22,8 @@ void GameCube::init()
 {
     vid.initMode(BG0_SPR_BG1);
     hilighter.init();
+
+    //PAINTS THE background 
     vid.bg0.image(vec(0,0), Playfield); //changes the top left corner, not very interesting 
 }
 
@@ -43,7 +45,7 @@ void GameCube::draw()
         p.draw(vid);
     }
     
-    hilighter.draw();
+    //hilighter.draw(); //not sure what this does but I'll figure it out later 
 }
 
 void GameCube::placeMarker(int id)
@@ -77,6 +79,9 @@ bool GameCube::reportMatches(unsigned bits)
     }
     return false;
 }
+
+
+//Do not understand what a cube highlighter is
 
 CubeHilighter::CubeHilighter(VideoBuffer &vid)
     : vid(vid), ticker(6), counter(0), pos(vec(-1,-1))

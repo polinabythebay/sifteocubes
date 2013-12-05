@@ -19,12 +19,16 @@ PlayfieldW = image{"playfield-w.png", width=24, height=96}
 Particle0 = image{"particle-0.png", width=16, height=16, pinned=true}
 Particle0Warp = image{"particle-0-warp.png", width=16, height=16, pinned=true}
 
-
-
-
-
-
-
+-- Our own pics
+--BuySupplies = image{"Task3Pics/Slide1.png"}
+--Duration_2hours = image{"Task3Pics/Slide2.png"}
+--WrapGift = image{"Task3Pics/Slide3.png"}
+--Duration_2hours = image{"Task3Pics/Slide4.png"}
+--BakeCake = image{"Task3Pics/Slide5.png"}
+--Duration_1point5hours = image{"Task3Pics/Slide6.png"}
+--Status_notStarted = image{"Task3Pics/Slide7.png"}
+--Status_inProgress = image{"Task3Pics/Slide8.png"}
+--Status_complete = image{"Task3Pics/Slide9.png"}
 
 
 --ALL OF THIS IS TAKEN FROM THE ASSETSLOT DEMO
