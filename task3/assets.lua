@@ -33,3 +33,7 @@ Bars = {
 	image{ "assets/bar_bottom.png", pinned=true },
 	image{ "assets/bar_right.png", pinned=true }
 }
+
+-- Animation Assets
+
+PaperAnimation = image{"assets/paperanimation/paperjoined.png", pinned=true, width=128, height=128}

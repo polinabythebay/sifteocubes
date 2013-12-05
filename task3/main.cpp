@@ -12,7 +12,8 @@ using namespace Sifteo;
 
 // METADATA
 
-static const unsigned gNumCubes = 6;
+static const unsigned gNumCubes = 3; 
+//changed to three so I could see the demo on the siftulator
 
 static Metadata M = Metadata()
     .title("Task 3")
@@ -232,6 +233,30 @@ static void onNeighborRemove(void* ctxt, unsigned cube0, unsigned side0, unsigne
     }
 }
 
+//Simulates a paper crumpling
+//uses a 128x1024 png that cycles through 10 frames 
+static void updateAnimation(unsigned cid){ 
+    
+    //change this increment to reflect a time frame we want
+    //still need to tweak this 
+    int counter= 0;
+    //while (counter<80) is not a bad frame 
+    //currently will run forever to show jist of animation
+    while(1){
+
+    //the cycleFrame reflects how fast the frames of the animation cycle through
+    unsigned frame = SystemTime::now().cycleFrame(2.0, PaperAnimation.numFrames());
+    
+    vbuf[cid].sprites[0].setImage(PaperAnimation, frame % PaperAnimation.numFrames());
+
+    //sprites[0] is highest priority (they go from 0-7)
+    //vbuf[cid].sprites[0].setImage(PaperAnimation, frame);
+
+    System::paint();
+    counter= counter+1;
+    }
+}
+
 static void onCubeTouch(void* ctxt, unsigned cid) {
     CubeID cube(cid);
     if (cube.isTouching() == true) { //only want touches, not untouches to trigger
@@ -247,6 +272,7 @@ static void onCubeTouch(void* ctxt, unsigned cid) {
                 vbuf[cid].bg0.image(vec(0,0), TaskBlues, taskCubes[cid].task);
                 break;
             case 2: //status is blue, so return to menu
+                updateAnimation(cid);
                 taskCubes[cid].status = 255;
                 taskCubes[cid].task = 255;
                 break;
@@ -378,9 +404,12 @@ void main() {
     Menu m0(vbuf[0], &gAssets, cube0Items);
     Menu m1(vbuf[1], &gAssets, cube1Items);
     Menu m2(vbuf[2], &gAssets, cube2Items);
+
+    /* Commented this out so the siftulator would work 
     Menu m3(vbuf[3], &gAssets, cube3Items);
     Menu m4(vbuf[4], &gAssets, cube4Items);
     Menu m5(vbuf[5], &gAssets, cube5Items);
+    */
 
     while (1) { //forever
         if (taskCubes[0].task == 255) { //if cube 0 is in menu mode, handle menu events
@@ -395,6 +424,7 @@ void main() {
             handleMenuEvents(m2, 2);            
                 
         } 
+        /*
         if(taskCubes[3].task==255){
             handleMenuEvents(m3, 3);
         }
@@ -406,7 +436,7 @@ void main() {
         if (taskCubes[5].task==255)
         {
             handleMenuEvents(m5, 5);
-        }
+        }*/
         
         //handle motion events once a task has been selected
         for (int i = 0; i < gNumCubes; i++)
