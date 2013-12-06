@@ -26,7 +26,7 @@ TaskReds = image{{"assets/task1red.png", "assets/task2red.png", "assets/task3red
 TaskYellows = image{{"assets/task1yellow.png", "assets/task2yellow.png", "assets/task3yellow.png", "assets/task4yellow.png", "assets/task5yellow.png", "assets/task6yellow.png"}}
 TaskBlues = image{{"assets/task1blue.png", "assets/task2blue.png", "assets/task3blue.png", "assets/task4blue.png", "assets/task5blue.png", "assets/task6blue.png"}}
 TaskPics = image{{"assets/task1Pic.png", "assets/task2Pic.png", "assets/task3Pic.png", "assets/task4Pic.png", "assets/task5Pic.png", "assets/task6Pic.png"}}
-TaskDurations = image{{"assets/task1Duration.png", "assets/task2Duration.png", "assets/task3Duration.png", "assets/task4Duration.png", "assets/task5Duration.png", "assets/task6Duration.png"}}
+TaskDurations = image{{"assets/task1Duration.png", "assets/task2Duration.png", "assets/task3Duration.png", "assets/task1Duration.png", "assets/task2Duration.png", "assets/task3Duration.png"}}
 
 -- Connection Assets
 
