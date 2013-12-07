@@ -240,21 +240,24 @@ static void updateAnimation(unsigned cid){
     //change this increment to reflect a time frame we want
     //still need to tweak this 
     int counter= 0;
-    //while (counter<80) is not a bad frame 
-    //currently will run forever to show jist of animation
-    while(1){
+    while (counter<10){ //is not a bad frame 
 
+    for (int i=0; i<12; i++){ //12 frames per count to slow down the animation
     //the cycleFrame reflects how fast the frames of the animation cycle through
-    unsigned frame = SystemTime::now().cycleFrame(2.0, PaperAnimation.numFrames());
-    
+    //unsigned frame = SystemTime::now().cycleFrame(2.0, PaperAnimation.numFrames());
+    unsigned frame = counter;
     vbuf[cid].sprites[0].setImage(PaperAnimation, frame % PaperAnimation.numFrames());
 
+    unsigned status1= frame % PaperAnimation.numFrames();
     //sprites[0] is highest priority (they go from 0-7)
     //vbuf[cid].sprites[0].setImage(PaperAnimation, frame);
 
+    LOG("The frame is now %d.\n", status1); 
     System::paint();
+    }
     counter= counter+1;
     }
+   
 }
 
 static void onCubeTouch(void* ctxt, unsigned cid) {
@@ -273,8 +276,11 @@ static void onCubeTouch(void* ctxt, unsigned cid) {
                 break;
             case 2: //status is blue, so return to menu
                 updateAnimation(cid);
-                taskCubes[cid].status = 255;
+                taskCubes[cid].status = 3;
                 taskCubes[cid].task = 255;
+                break;
+            case 3: //cube is having an animation
+                taskCubes[cid].status = 255;
                 break;
             case 255: //cube is being activated from menu
                 taskCubes[cid].status = 0;
@@ -319,7 +325,7 @@ void handleMenuEvents(Menu &m, int cid) {
     if (m.pollEvent(&e)) {
         switch (e.type) {
             case MENU_ITEM_PRESS: 
-                m.anchor(e.item); //afaik this just makes the item "stick"
+                m.anchor(e.item); //afraid this just makes the item "stick"
                 break;
 
             //stuff we don't care about
