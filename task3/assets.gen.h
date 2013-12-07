@@ -9,17 +9,37 @@
 extern Sifteo::AssetGroup IconAssets;
 extern const Sifteo::AssetImage Icon;
 extern Sifteo::AssetGroup BootstrapAssets;
+extern const Sifteo::AssetImage Task3_Icon;
+extern const Sifteo::AssetImage Task4_Icon;
+extern const Sifteo::AssetImage Task5_Icon;
+extern const Sifteo::AssetImage Task6_Icon;
+extern const Sifteo::AssetImage LabelEmpty;
+extern const Sifteo::AssetImage TaskYellows;
+extern const Sifteo::AssetImage TaskPics;
+extern const Sifteo::AssetImage TaskDurations;
 extern const Sifteo::PinnedAssetImage BgTile;
 extern const Sifteo::PinnedAssetImage StripeTile;
 extern const Sifteo::AssetImage Task1_Icon;
+<<<<<<< HEAD
+extern const Sifteo::AssetImage Task2_Icon;
+extern const Sifteo::AssetImage Footer;
 extern const Sifteo::AssetImage TaskReds;
+=======
+extern const Sifteo::AssetImage Task6_Icon;
 extern const Sifteo::AssetImage Task2_Icon;
 extern const Sifteo::AssetImage Task3_Icon;
+extern const Sifteo::AssetImage Task4_Icon;
+extern const Sifteo::AssetImage Task5_Icon;
 extern const Sifteo::AssetImage Footer;
 extern const Sifteo::AssetImage LabelEmpty;
+extern const Sifteo::AssetImage TaskReds;
 extern const Sifteo::AssetImage TaskYellows;
+>>>>>>> c32c9becab161e1630354fcf97dcf049e94f9ee7
 extern const Sifteo::AssetImage TaskBlues;
-extern const Sifteo::AssetImage TaskPics;
-extern const Sifteo::AssetImage TaskDurations;
 extern const Sifteo::PinnedAssetImage PaperAnimation;
-extern const Sifteo::PinnedAssetImage Bars[4];
+extern const Sifteo::PinnedAssetImage OrangeBars[4];
+extern const Sifteo::PinnedAssetImage RedBars[4];
+extern const Sifteo::PinnedAssetImage BlueBars[4];
+extern const Sifteo::PinnedAssetImage GreenBars[4];
+extern const Sifteo::PinnedAssetImage PurpleBars[4];
+extern const Sifteo::PinnedAssetImage YellowBars[4];
