@@ -418,8 +418,12 @@ void main() {
     */
 
     while (1) { //forever
+    
+
         if (taskCubes[0].task == 255) { //if cube 0 is in menu mode, handle menu events
-            handleMenuEvents(m0, 0);            
+        
+            handleMenuEvents(m0, 0); 
+
         }
         
         if (taskCubes[1].task == 255) { //if cube 1 is in menu mode, handle menu events
