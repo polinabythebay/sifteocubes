@@ -5,7 +5,7 @@ Icon = image{"assets/icon.png"}
 
 -- Menu Assets
 
-BootstrapAssets = group{quality=10}
+BootstrapAssets = group{quality=8.90}
 
 BgTile = image{ "assets/bg.png", pinned=1 }
 StripeTile = image{ "assets/stripes.png", pinned=1 }
@@ -22,19 +22,12 @@ LabelEmpty = image{ "assets/LabelEmpty.png" }
 
 -- Task Assets
 
-<<<<<<< HEAD
 TaskReds = image{{"assets/task1red.png", "assets/task2red.png", "assets/task3red.png", "assets/task4red.png", "assets/task5red.png", "assets/task6red.png"}}
 TaskYellows = image{{"assets/task1yellow.png", "assets/task2yellow.png", "assets/task3yellow.png", "assets/task4yellow.png", "assets/task5yellow.png", "assets/task6yellow.png"}}
 TaskBlues = image{{"assets/task1blue.png", "assets/task2blue.png", "assets/task3blue.png", "assets/task4blue.png", "assets/task5blue.png", "assets/task6blue.png"}}
 TaskPics = image{{"assets/task1Pic.png", "assets/task2Pic.png", "assets/task3Pic.png", "assets/task4Pic.png", "assets/task5Pic.png", "assets/task6Pic.png"}}
-TaskDurations = image{{"assets/task1Duration.png", "assets/task2Duration.png", "assets/task3Duration.png", "assets/task1Duration.png", "assets/task2Duration.png", "assets/task3Duration.png"}}
-=======
-TaskReds = image{{"assets/task1red.png", "assets/task2red.png", "assets/task3red.png"}}
-TaskYellows = image{{"assets/task1yellow.png", "assets/task2yellow.png", "assets/task3yellow.png"}}
-TaskBlues = image{{"assets/task1blue.png", "assets/task2blue.png", "assets/task3blue.png"}}
-TaskPics = image{{"assets/task1Pic.png", "assets/task2Pic.png", "assets/task3Pic.png"}}
-TaskDurations = image{{"assets/task1Duration.png", "assets/task2Duration.png", "assets/task3Duration.png"}}
->>>>>>> c32c9becab161e1630354fcf97dcf049e94f9ee7
+TaskDurations = image{{"assets/task1Duration.png", "assets/task2Duration.png", "assets/task3Duration.png", "assets/task4Duration.png", "assets/task5Duration.png", "assets/task6Duration.png"}}
+
 
 -- Connection Assets
 
