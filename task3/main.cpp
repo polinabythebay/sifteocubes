@@ -49,11 +49,10 @@ static AssetConfiguration<1> config; // global asset configuration (will just ho
 static struct MenuItem cube0Items[] = {{&Task1_Icon, &LabelEmpty}, {&Task2_Icon, &LabelEmpty}, {&Task3_Icon, &LabelEmpty}, {&Task4_Icon, &LabelEmpty}, {&Task5_Icon, &LabelEmpty}, {&Task6_Icon, &LabelEmpty}, {NULL, NULL}};
 static struct MenuItem cube1Items[] = {{&Task1_Icon, &LabelEmpty}, {&Task2_Icon, &LabelEmpty}, {&Task3_Icon, &LabelEmpty}, {&Task4_Icon, &LabelEmpty}, {&Task5_Icon, &LabelEmpty}, {&Task6_Icon, &LabelEmpty}, {NULL, NULL}};
 static struct MenuItem cube2Items[] = {{&Task1_Icon, &LabelEmpty}, {&Task2_Icon, &LabelEmpty}, {&Task3_Icon, &LabelEmpty}, {&Task4_Icon, &LabelEmpty}, {&Task5_Icon, &LabelEmpty}, {&Task6_Icon, &LabelEmpty}, {NULL, NULL}};
-//static struct MenuItem cube3Items[] = {{&Task1_Icon, &LabelEmpty}, {&Task2_Icon, &LabelEmpty}, {&Task3_Icon, &LabelEmpty}, {&Task4_Icon, &LabelEmpty}, {&Task5_Icon, &LabelEmpty}, {&Task6_Icon, &LabelEmpty}, {NULL, NULL}};
-//static struct MenuItem cube4Items[] = {{&Task1_Icon, &LabelEmpty}, {&Task2_Icon, &LabelEmpty}, {&Task3_Icon, &LabelEmpty}, {&Task4_Icon, &LabelEmpty}, {&Task5_Icon, &LabelEmpty}, {&Task6_Icon, &LabelEmpty}, {NULL, NULL}};
-//static struct MenuItem cube5Items[] = {{&Task1_Icon, &LabelEmpty}, {&Task2_Icon, &LabelEmpty}, {&Task3_Icon, &LabelEmpty}, {&Task4_Icon, &LabelEmpty}, {&Task5_Icon, &LabelEmpty}, {&Task6_Icon, &LabelEmpty}, {NULL, NULL}};
-//static struct MenuItem cubePics[] = {{&task1Pic, &LabelEmpty}, {&task2Pic, &LabelEmpty}, {&task3Pic, &LabelEmpty}, {NULL, NULL}};
-//static struct MenuItem
+static struct MenuItem cube3Items[] = {{&Task1_Icon, &LabelEmpty}, {&Task2_Icon, &LabelEmpty}, {&Task3_Icon, &LabelEmpty}, {&Task4_Icon, &LabelEmpty}, {&Task5_Icon, &LabelEmpty}, {&Task6_Icon, &LabelEmpty}, {NULL, NULL}};
+static struct MenuItem cube4Items[] = {{&Task1_Icon, &LabelEmpty}, {&Task2_Icon, &LabelEmpty}, {&Task3_Icon, &LabelEmpty}, {&Task4_Icon, &LabelEmpty}, {&Task5_Icon, &LabelEmpty}, {&Task6_Icon, &LabelEmpty}, {NULL, NULL}};
+static struct MenuItem cube5Items[] = {{&Task1_Icon, &LabelEmpty}, {&Task2_Icon, &LabelEmpty}, {&Task3_Icon, &LabelEmpty}, {&Task4_Icon, &LabelEmpty}, {&Task5_Icon, &LabelEmpty}, {&Task6_Icon, &LabelEmpty}, {NULL, NULL}};
+
 
 static struct MenuAssets gAssets = {&BgTile, &Footer, &LabelEmpty, {NULL}};
 
