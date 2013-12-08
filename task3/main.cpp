@@ -261,18 +261,17 @@ static void updateAnimation(unsigned cid){
     //change this increment to reflect a time frame we want
     //still need to tweak this 
     int counter= 0;
-    while (counter<10){ //is not a bad frame 
+    while (counter<10){  
 
     for (int i=0; i<12; i++){ //12 frames per count to slow down the animation
-    //the cycleFrame reflects how fast the frames of the animation cycle through
-    //unsigned frame = SystemTime::now().cycleFrame(2.0, PaperAnimation.numFrames());
+   
     unsigned frame = counter;
+
+    //sprites[0] is highest priority (they go from 0-7)
     vbuf[cid].sprites[0].setImage(PaperAnimation, frame % PaperAnimation.numFrames());
 
     unsigned status1= frame % PaperAnimation.numFrames();
-    //sprites[0] is highest priority (they go from 0-7)
-    //vbuf[cid].sprites[0].setImage(PaperAnimation, frame);
-
+    
     LOG("The frame is now %d.\n", status1); 
     System::paint();
     }
