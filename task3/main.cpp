@@ -19,7 +19,7 @@ static Metadata M = Metadata()
     .title("Task 3")
     .package("edu.wellesley.cs.task3", "1.0.0")
     .icon(Icon)
-    .cubeRange(gNumCubes);
+    .cubeRange(0,gNumCubes);
 
 static AssetSlot gMainSlot = AssetSlot::allocate()
     .bootstrap(BootstrapAssets);
